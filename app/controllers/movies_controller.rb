@@ -14,4 +14,16 @@ class MoviesController < ApplicationController
 
     render({ :template => "movie_templates/show" })
   end
+
+  def create
+    post("/insert_movie") do
+      Movie.create({:id => params.fetch("director_id_box"), :year => params.fetch("year_box"), :duration => params.fetch("duration _box"), :description => params.fetch("description_box"), :image => params.fetch("image_box"), :director_id => params.fetch("director_id_box")})
+    end
+    redirect_to("/movies")
+  end
+
+  def delete
+    
+  end
+
 end
