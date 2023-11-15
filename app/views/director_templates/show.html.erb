@@ -2,11 +2,40 @@
   Director #<%= @the_director.id %> details
 </h1>
 
-<a href="/directors">
-  Go back
-</a>
+<div>
+  <a href="/directors">
+    Go back
+  </a>
+</div>
+
+<div>
+  <a href="/delete_director/<%=@the_director.id%>">
+    Delete director
+  </a>
+</div>
 
 <hr>
+
+<form action="/modify_director/<%=@the_director.id%>" method="post">
+
+  <div>
+    <label for="name_box">Name</label>
+    <input id="name_box" type="text" name="query_name" value="<%=@the_director.name%>">
+  </div>
+  <div>
+    <label for="dob_box">Dob</label>
+    <input type="text" name="query_dob" id="dob_box" value="<%=@the_director.dob%>">
+  </div>
+  <div>
+    <label for="bio_box">Bio</label>
+    <textarea name="query_bio" id="bio_box" rows="3"><%=@the_director.bio%></textarea>
+  </div>
+  <div>
+    <label for="image_box">Image</label>
+    <input type="text" name="query_image" id="image_box" value="<%=@the_director.image%>"> 
+  </div>
+  <button>Update director</button>
+</form>
 
 <dl>
   <dt>
@@ -71,7 +100,7 @@
     </th>
 
     <th>
-      Year
+      year
     </th>
 
     <th>
@@ -84,26 +113,26 @@
 
   <% the_id = @the_director.id %>
 
-  <% matching_movies = Movie.where({ :director_id => the_id }) %>
+  <% matching_directors = Movie.where({ :director_id => the_id }) %>
   
-  <% films = matching_movies.order({ :year => :asc }) %>
+  <% films = matching_directors.order({ :id => :asc }) %>
 
-  <% films.each do |a_movie| %>
+  <% films.each do |a_film| %>
   <tr>
     <td>
-      <%= a_movie.id %>
+      <%= a_film.id %>
     </td>
 
     <td>
-      <img src="<%= a_movie.image %>" style="width:250px;">
+      <img src="<%= a_film.image %>" style="width:250px;">
     </td>
 
     <td>
-      <%= a_movie.title %>
+      <%= a_film.title %>
     </td>
 
     <td>
-      <%= a_movie.year %>
+      <%= a_film.year %>
     </td>
 
     <td>
@@ -111,7 +140,7 @@
     </td>
 
     <td>
-      <a href="/movies/<%= a_movie.id %>">
+      <a href="/movies/<%= a_film.id %>">
         Show details
       </a>
     </td>

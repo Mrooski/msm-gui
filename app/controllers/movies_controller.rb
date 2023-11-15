@@ -16,14 +16,12 @@ class MoviesController < ApplicationController
   end
 
   def create
-    
     Movie.create({:year => params.fetch("query_year"), :duration => params.fetch("query_duration"), :description => params.fetch("query_description"), :image => params.fetch("query_image"), :director_id => params.fetch("query_director")})
 
     redirect_to("/movies")
   end
 
   def update
-
     movie_id = Movie.where({:id => params.fetch("id")}).at(0).id.to_s
 
      Movie.where({:id => params.fetch("id")}).at(0).update({:year => params.fetch("query_year"), :duration => params.fetch("query_duration"), :description => params.fetch("query_description"), :image => params.fetch("query_image"), :director_id => params.fetch("query_director")})
@@ -32,12 +30,10 @@ class MoviesController < ApplicationController
   end
 
   def delete
-    
     deleted_movie = Movie.where({:id => params.fetch("id")}).at(0)
 
     deleted_movie.delete
     
     redirect_to("/movies")
   end
-
 end
