@@ -16,14 +16,28 @@ class MoviesController < ApplicationController
   end
 
   def create
-    post("/insert_movie") do
-      Movie.create({:id => params.fetch("director_id_box"), :year => params.fetch("year_box"), :duration => params.fetch("duration _box"), :description => params.fetch("description_box"), :image => params.fetch("image_box"), :director_id => params.fetch("director_id_box")})
-    end
+    
+    Movie.create({:year => params.fetch("query_year"), :duration => params.fetch("query_duration"), :description => params.fetch("query_description"), :image => params.fetch("query_image"), :director_id => params.fetch("query_director")})
+
     redirect_to("/movies")
+  end
+
+  def update
+
+    movie_id = Movie.where({:id => params.fetch("id")}).at(0).id.to_s
+
+     Movie.where({:id => params.fetch("id")}).at(0).update({:year => params.fetch("query_year"), :duration => params.fetch("query_duration"), :description => params.fetch("query_description"), :image => params.fetch("query_image"), :director_id => params.fetch("query_director")})
+  
+     redirect_to("/movies/"+movie_id.to_s)
   end
 
   def delete
     
+    deleted_movie = Movie.where({:id => params.fetch("id")}).at(0)
+
+    deleted_movie.delete
+    
+    redirect_to("/movies")
   end
 
 end
