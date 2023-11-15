@@ -14,4 +14,24 @@ class ActorsController < ApplicationController
       
     render({ :template => "actor_templates/show" })
   end
+
+  def create
+    Actor.create({:name => params.fetch("query_name"), :dob => params.fetch("query_dob"), :bio => params.fetch("query_bio"), :image => params.fetch("query_image")})
+
+    redirect_to("/actors")
+  end
+
+  def update
+    actor_numb = params.fetch("id")
+
+    Actor.where({:id => params.fetch("id")}).at(0).update({:name => params.fetch("query_name"), :dob => params.fetch("query_dob"), :bio => params.fetch("query_bio"), :image => params.fetch("query_image")})
+
+    redirect_to("/actors/"+actor_numb)
+  end
+
+  def delete
+    Actor.where({:id => params.fetch("id")}).at(0).delete
+    redirect_to("/actors")
+  end
+
 end

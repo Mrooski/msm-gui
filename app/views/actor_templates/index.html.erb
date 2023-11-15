@@ -6,31 +6,22 @@
 
 <form action="/insert_actor" method="post">
   <div>
-    <label for="name_box">Title</label>
+    <label for="name_box">Name</label>
     <input id="name_box" type="text" name="query_name">
   </div>
   <div>
-    <label for="year_box">Year</label>
-    <input type="text" name="query_year" id="year_box">
+    <label for="dob_box">Dob</label>
+    <input type="date" name="query_dob" id="dob_box">
   </div>
   <div>
-    <label for="duration_box">Duration</label>
-    <input type="text" name="query_duration" id="duration_box">
-  </div>
-  <div>
-    <label for="description_box">Description</label>
-    <textarea name="query_description" id="description_box" rows="3"></textarea>
+    <label for="bio_box">Bio</label>
+    <textarea name="query_bio" id="bio_box" rows="3"></textarea>
   </div>
   <div>
     <label for="image_box">Image</label>
-    <input type="text" name="query_image" id="image_box">
+    <input type="text" name="query_image" id="image_box"> 
   </div>
-  <div>
-    <label for="director_id_box">Director ID</label>
-    <input type="text" name="query_director" id="director_id_box">
-  </div>
-
-  <button>Create movie</button>
+  <button>Create actor</button>
 </form>
 
 <hr>

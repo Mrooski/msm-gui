@@ -1,10 +1,38 @@
 <h1>
   Actor #<%= @the_actor.id %> details
 </h1>
+<dl>
+  <a href="/actors">
+    Go back
+  </a>
+</dl>
+<dl>
+  <a href="/delete_actor/<%= @the_actor.id %>">
+    delete
+  </a>
+</dl>
 
-<a href="/actors">
-  Go back
-</a>
+<hr>
+
+<form action="/modify_actor/<%= @the_actor.id %>" method="post">
+  <div>
+    <label for="name_box">Name</label>
+    <input id="name_box" type="text" name="query_name" value="<%= @the_actor.name %>">
+  </div>
+  <div>
+    <label for="dob_box">Dob</label>
+    <input type="date" name="query_dob" id="dob_box" value="<%= @the_actor.dob%>">
+  </div>
+  <div>
+    <label for="bio_box">Bio</label>
+    <textarea name="query_bio" id="bio_box" rows="3"><%= @the_actor.bio %></textarea>
+  </div>
+  <div>
+    <label for="image_box">Image</label>
+    <input type="text" name="query_image" id="image_box" value="<%= @the_actor.image %>">
+  </div>
+  <button>Update actor</button>
+</form>
 
 <hr>
 
