@@ -18,8 +18,8 @@
 <form action="/modify_movie/<%=@the_movie.id%>" method="post">
 
   <div>
-    <label for="title_box">Title</label>
-    <input id="title box" type="text" name="query_title" value="<%=@the_movie.title%>">
+    <label for="Title">Title</label>
+    <input id="Title" type="text" name="query_title" value="<%=@the_movie.title%>">
   </div>
   <div>
     <label for="year_box">Year</label>
@@ -38,8 +38,8 @@
     <input type="text" name="query_image" id="image_box" value="<%=@the_movie.image%>"> 
   </div>
   <div>
-    <label for="director_id_box">Director ID</label>
-    <input type="text" name="query_director" id="director_id_box" value="<%=@the_movie.director_id%>">
+      <label for="director_id_box">Director ID</label>
+      <input type="text" name="query_director" id="director_id_box" value="<%=@the_movie.director_id%>">
   </div>
   <button>Update movie</button>
 </form>
@@ -91,8 +91,13 @@
     <% matching_directors = Director.where({ :id => dir_id }) %>
     
     <% the_director = matching_directors.at(0) %>
-
-    <%= the_director.name %>
+    <% if the_director != nil %>
+      <%= the_director.name %>
+    <%else%>
+      <dt>
+        Uh oh! We weren't able to find a director for this movie.
+      </dt>
+    <%end%>
   </dd>
 
   <dt>

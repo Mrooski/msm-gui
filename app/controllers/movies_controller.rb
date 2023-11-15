@@ -16,7 +16,7 @@ class MoviesController < ApplicationController
   end
 
   def create
-    Movie.create({:year => params.fetch("query_year"), :duration => params.fetch("query_duration"), :description => params.fetch("query_description"), :image => params.fetch("query_image"), :director_id => params.fetch("query_director")})
+    Movie.create({:title => params.fetch("query_title"), :year => params.fetch("query_year"), :duration => params.fetch("query_duration"), :description => params.fetch("query_description"), :image => params.fetch("query_image"), :director_id => params.fetch("query_director")})
 
     redirect_to("/movies")
   end
